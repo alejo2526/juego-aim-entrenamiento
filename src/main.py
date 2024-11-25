@@ -1,13 +1,17 @@
 import pygame
 from game import Game
-from app.constants import *
+from constants import WIDTH, HEIGHT
+
 
 def main():
     pygame.init()
     pygame.mixer.init()
+
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    game = Game()
-    
+    pygame.display.set_caption("Aim Trainer")
+
+    game = Game(screen)
+
     while True:
         if game.game_state == "enter_name":
             game.enter_name()
@@ -18,6 +22,6 @@ def main():
         elif game.game_state == "game_over":
             game.show_game_over()
 
+
 if __name__ == "__main__":
     main()
-

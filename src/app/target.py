@@ -2,6 +2,7 @@ import pygame
 import math
 from constants import *
 
+
 class Target:
     def __init__(self, x, y, radius, disappearing=False, lifetime=2000):
         self.x = x
@@ -23,4 +24,3 @@ class Target:
         if self.disappearing:
             return pygame.time.get_ticks() - self.creation_time > self.lifetime
         return False
-
