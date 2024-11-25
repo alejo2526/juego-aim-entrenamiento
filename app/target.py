@@ -2,7 +2,7 @@ import pygame
 import math
 from app.constants import *
 
-
+# esta se encarga de dibujar los objetivos y checar si les dan o no
 class Target:
     def __init__(self, x, y, radius, disappearing=False, lifetime=2000):
         self.x = x

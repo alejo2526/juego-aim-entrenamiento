@@ -17,7 +17,7 @@ class Game:
         self.game_state = "enter_name"
         self.high_scores = {}
         self.player_name = ""
-
+    #genera los objetivos
     def generate_target(self):
         x = random.randint(50, WIDTH - 50)
         y = random.randint(50, HEIGHT - 50)
@@ -29,10 +29,10 @@ class Game:
     def update(self):
         if len(self.targets) < 3 + self.level:
             self.generate_target()
-        self.targets = [target for target in self.targets if not target.should_disappear()]
+        self.targets = [target for target in self.targets if not target.should_disappear()] #esta funcion es una list comprehenshon, se encarga que los objetivos se desaparezcan
 
     def draw(self):
-        self.screen.fill(BLACK)
+        self.screen.fill(BLACK) #cambiar fondo
         for target in self.targets:
             target.draw(self.screen)
         
@@ -47,14 +47,15 @@ class Game:
         self.screen.blit(name_text, (WIDTH - 300, 50))
 
         if self.level % 3 == 0:
-            instruction_text = self.font.render("¡Cuidado! Los objetivos amarillos desaparecen", True, YELLOW)
+            instruction_text = self.font.render("ahora desaparecen los objetivos !tu puedes", True, YELLOW)
             self.screen.blit(instruction_text, (WIDTH // 2 - instruction_text.get_width() // 2, HEIGHT - 50))
 
+    # analiza cuantos tiros acertados hizo 
     def check_hit(self, mouse_pos):
         for target in self.targets[:]:
             if target.check_hit(mouse_pos):
                 self.targets.remove(target)
-                self.score += 10 * self.level
+                self.score += 10 * self.level 
                 self.hit_sound.play()
                 if self.score % 100 == 0:
                     self.level += 1
@@ -84,6 +85,9 @@ class Game:
 
             clock.tick(60)
 
+
+    # mostar el menu de inicio de juego
+    
     def show_menu(self):
         self.screen.fill(BLACK)
         title_text = self.font.render("AimlabVTurbo", True, WHITE)
@@ -109,7 +113,8 @@ class Game:
                     self.level = 1
                     self.time_left = 30
                     self.targets = []
-
+                    
+    # pantalla final del juego
     def show_game_over(self):
         self.screen.fill(BLACK)
         game_over_text = self.font.render("Juego terminado", True, WHITE)
@@ -125,6 +130,7 @@ class Game:
 
         pygame.display.flip()
 
+        # Esperar a que el usuario interactue con la app
         waiting = True
         while waiting:
             for event in pygame.event.get():
