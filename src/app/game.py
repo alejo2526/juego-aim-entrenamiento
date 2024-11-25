@@ -1,3 +1,9 @@
+import pygame
+from target import Target
+from constants import *
+import random
+
+
 class Game:
     def __init__(self):
         self.targets = []
@@ -26,7 +32,8 @@ class Game:
             self.generate_target()
 
         # Eliminar objetivos que deben desaparecer
-        self.targets = [target for target in self.targets if not target.should_disappear()]
+        self.targets = [
+            target for target in self.targets if not target.should_disappear()]
 
     def draw(self):
         # Dibujar todos los elementos del juego
@@ -47,8 +54,10 @@ class Game:
 
         # Mostrar instrucciones para niveles con objetivos que desaparecen
         if self.level % 3 == 0:
-            instruction_text = font.render("¡Cuidado! Los objetivos amarillos desaparecen", True, YELLOW)
-            screen.blit(instruction_text, (WIDTH // 2 - instruction_text.get_width() // 2, HEIGHT - 50))
+            instruction_text = font.render(
+                "¡Cuidado! Los objetivos amarillos desaparecen", True, YELLOW)
+            screen.blit(instruction_text, (WIDTH // 2 -
+                        instruction_text.get_width() // 2, HEIGHT - 50))
 
     def check_hit(self, mouse_pos):
         # Verificar si se ha golpeado algún objetivo
@@ -81,7 +90,8 @@ class Game:
             pygame.display.flip()
 
             # Actualizar el tiempo restante
-            self.time_left = max(30 - (pygame.time.get_ticks() - start_time) / 1000, 0)
+            self.time_left = max(
+                30 - (pygame.time.get_ticks() - start_time) / 1000, 0)
             if self.time_left <= 0:
                 self.game_state = "game_over"
 
@@ -92,11 +102,15 @@ class Game:
         screen.fill(BLACK)
         title_text = font.render("Aim Trainer", True, WHITE)
         start_text = font.render("Click to Start", True, WHITE)
-        high_score_text = font.render(f"High Score: {self.get_high_score()}", True, WHITE)
+        high_score_text = font.render(
+            f"High Score: {self.get_high_score()}", True, WHITE)
 
-        screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
-        screen.blit(start_text, (WIDTH // 2 - start_text.get_width() // 2, HEIGHT // 2))
-        screen.blit(high_score_text, (WIDTH // 2 - high_score_text.get_width() // 2, HEIGHT * 2 // 3))
+        screen.blit(title_text, (WIDTH // 2 -
+                    title_text.get_width() // 2, HEIGHT // 3))
+        screen.blit(start_text, (WIDTH // 2 -
+                    start_text.get_width() // 2, HEIGHT // 2))
+        screen.blit(high_score_text, (WIDTH // 2 -
+                    high_score_text.get_width() // 2, HEIGHT * 2 // 3))
 
         pygame.display.flip()
 
@@ -121,9 +135,12 @@ class Game:
         score_text = font.render(f"Final Score: {self.score}", True, WHITE)
         restart_text = font.render("Click to Restart", True, WHITE)
 
-        screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 3))
-        screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2))
-        screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT * 2 // 3))
+        screen.blit(game_over_text, (WIDTH // 2 -
+                    game_over_text.get_width() // 2, HEIGHT // 3))
+        screen.blit(score_text, (WIDTH // 2 -
+                    score_text.get_width() // 2, HEIGHT // 2))
+        screen.blit(restart_text, (WIDTH // 2 -
+                    restart_text.get_width() // 2, HEIGHT * 2 // 3))
 
         # Actualizar la puntuación más alta si es necesario
         if self.score > self.get_high_score():
@@ -148,9 +165,12 @@ class Game:
         name_text = font.render(self.player_name, True, WHITE)
         instruction_text = font.render("Press Enter when done", True, WHITE)
 
-        screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
-        screen.blit(name_text, (WIDTH // 2 - name_text.get_width() // 2, HEIGHT // 2))
-        screen.blit(instruction_text, (WIDTH // 2 - instruction_text.get_width() // 2, HEIGHT * 2 // 3))
+        screen.blit(title_text, (WIDTH // 2 -
+                    title_text.get_width() // 2, HEIGHT // 3))
+        screen.blit(name_text, (WIDTH // 2 -
+                    name_text.get_width() // 2, HEIGHT // 2))
+        screen.blit(instruction_text, (WIDTH // 2 -
+                    instruction_text.get_width() // 2, HEIGHT * 2 // 3))
 
         pygame.display.flip()
 
@@ -169,12 +189,15 @@ class Game:
                         self.player_name = self.player_name[:-1]
                     else:
                         self.player_name += event.unicode
-            
+
             screen.fill(BLACK)
-            screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
+            screen.blit(title_text, (WIDTH // 2 -
+                        title_text.get_width() // 2, HEIGHT // 3))
             name_text = font.render(self.player_name, True, WHITE)
-            screen.blit(name_text, (WIDTH // 2 - name_text.get_width() // 2, HEIGHT // 2))
-            screen.blit(instruction_text, (WIDTH // 2 - instruction_text.get_width() // 2, HEIGHT * 2 // 3))
+            screen.blit(name_text, (WIDTH // 2 -
+                        name_text.get_width() // 2, HEIGHT // 2))
+            screen.blit(instruction_text, (WIDTH // 2 -
+                        instruction_text.get_width() // 2, HEIGHT * 2 // 3))
             pygame.display.flip()
 
     def get_high_score(self):

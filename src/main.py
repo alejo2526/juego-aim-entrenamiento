@@ -1,5 +1,10 @@
+import pygame
+from game import Game
+
 def main():
-    # Función principal que maneja el flujo del juego
+    pygame.init()
+    pygame.mixer.init()
+    
     game = Game()
     
     while True:
@@ -14,3 +19,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
