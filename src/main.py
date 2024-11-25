@@ -1,10 +1,11 @@
 import pygame
 from game import Game
+from app.constants import *
 
 def main():
     pygame.init()
     pygame.mixer.init()
-    
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     game = Game()
     
     while True:
