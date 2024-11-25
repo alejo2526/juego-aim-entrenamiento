@@ -1,6 +1,6 @@
 import pygame
-from game import Game
-from constants import WIDTH, HEIGHT
+from app.game import Game
+from app.constants import WIDTH, HEIGHT
 
 
 def main():

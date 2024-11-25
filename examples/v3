@@ -147,7 +147,7 @@ class Game:
     def show_game_over(self):
         # Mostrar la pantalla de fin de juego
         screen.fill(BLACK)
-        game_over_text = font.render("Game Over", True, WHITE)
+        game_over_text = font.render("Juego terminado", True, WHITE)
         score_text = font.render(f"Final Score: {self.score}", True, WHITE)
         restart_text = font.render("Click to Restart", True, WHITE)
 

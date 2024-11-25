@@ -1,13 +1,13 @@
 import pygame
-from target import Target
-from constants import *
+from app.target import *
+from app.constants import *
 import random
 
 class Game:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(None, 36)
-        self.hit_sound = pygame.mixer.Sound("hit.wav")
+        self.hit_sound = pygame.mixer.Sound("assets\sounds\pistol-shot-233473.wav")
         pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_CROSSHAIR)
         
         self.targets = []
@@ -36,10 +36,10 @@ class Game:
         for target in self.targets:
             target.draw(self.screen)
         
-        score_text = self.font.render(f"Score: {self.score}", True, WHITE)
-        level_text = self.font.render(f"Level: {self.level}", True, WHITE)
-        time_text = self.font.render(f"Time: {int(self.time_left)}", True, WHITE)
-        name_text = self.font.render(f"Player: {self.player_name}", True, WHITE)
+        score_text = self.font.render(f"Puntos: {self.score}", True, WHITE)
+        level_text = self.font.render(f"Nivel: {self.level}", True, WHITE)
+        time_text = self.font.render(f"Tiempo: {int(self.time_left)}", True, WHITE)
+        name_text = self.font.render(f"Jugador: {self.player_name}", True, WHITE)
         
         self.screen.blit(score_text, (10, 10))
         self.screen.blit(level_text, (10, 50))
@@ -86,9 +86,9 @@ class Game:
 
     def show_menu(self):
         self.screen.fill(BLACK)
-        title_text = self.font.render("Aim Trainer", True, WHITE)
-        start_text = self.font.render("Click to Start", True, WHITE)
-        high_score_text = self.font.render(f"High Score: {self.get_high_score()}", True, WHITE)
+        title_text = self.font.render("AimlabVTurbo", True, WHITE)
+        start_text = self.font.render("Click para empezar", True, WHITE)
+        high_score_text = self.font.render(f"Puntaje mas alto: {self.get_high_score()}", True, WHITE)
 
         self.screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
         self.screen.blit(start_text, (WIDTH // 2 - start_text.get_width() // 2, HEIGHT // 2))
@@ -112,9 +112,9 @@ class Game:
 
     def show_game_over(self):
         self.screen.fill(BLACK)
-        game_over_text = self.font.render("Game Over", True, WHITE)
-        score_text = self.font.render(f"Final Score: {self.score}", True, WHITE)
-        restart_text = self.font.render("Click to Restart", True, WHITE)
+        game_over_text = self.font.render("Juego terminado", True, WHITE)
+        score_text = self.font.render(f"Puntaje final: {self.score}", True, WHITE)
+        restart_text = self.font.render("Click para reiniciar", True, WHITE)
 
         self.screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 3))
         self.screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2))
@@ -137,9 +137,9 @@ class Game:
 
     def enter_name(self):
         self.screen.fill(BLACK)
-        title_text = self.font.render("Enter Your Name", True, WHITE)
+        title_text = self.font.render("Ingresa tu nombre", True, WHITE)
         name_text = self.font.render(self.player_name, True, WHITE)
-        instruction_text = self.font.render("Press Enter when done", True, WHITE)
+        instruction_text = self.font.render("Presiona enter", True, WHITE)
 
         self.screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
         self.screen.blit(name_text, (WIDTH // 2 - name_text.get_width() // 2, HEIGHT // 2))

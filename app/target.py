@@ -1,6 +1,6 @@
 import pygame
 import math
-from constants import *
+from app.constants import *
 
 
 class Target:
